@@ -1,0 +1,22 @@
+- size = @apps.size
+#welcome.app-nav.row
+  section#dashboard.col-xs-12.col-sm-12.col-md-8.col-lg-8
+    div#welcome_apps.row
+      - if size > 6
+        = render partial: 'pair', collection: @apps[0..(size-1)/2].zip(@apps[(size+1)/2..-1])
+      - else
+        = render :partial => 'app', :collection => @apps
+
+      - if @apps.length < 3
+        div.install-wrap
+          = link_to '', apps_engine.root_path, :title => t('install_apps'), :id => 'install-apps'
+
+  - if @news
+    section#latest_news.col-xs-12.col-sm-12.col-md-4.col-lg-4
+      ul.list-group
+        li.list-group-item
+          h3 = t('latest_news')
+        = render :partial => 'news', :collection => @news
+        li.list-group-item
+          span#more_news
+            = link_to(t("more_news"), "http://blog.amahi.org/")

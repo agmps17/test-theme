@@ -1,0 +1,27 @@
+nav#footer.navbar.navbar-default.navbar-fixed-bottom role="navigation"
+  .container
+    .navbar-header
+      button.navbar-toggle data-target="#navbarCollapseFooter" data-toggle="collapse" type="button"
+        span.sr-only Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+    #navbarCollapseFooter.collapse.navbar-collapse
+      ul.nav.navbar-nav.navbar-left
+        li  = link_to  "&copy;#{Date.today.year} Amahi".html_safe, "http://www.amahi.org", :target => "_blank"
+      ul.nav.navbar-nav.navbar-right#navigation
+        li = link_to t('your_control_panel'), 'https://www.amahi.org/user', :target=>'_blank'
+        li = link_to t('feedback'),'https://www.amahi.org/feedback', :target=>'_blank'
+        li = link_to t('wiki'), 'https://wiki.amahi.org/', :target=>'_blank'
+        li = link_to t('tracker'), 'https://bugs.amahi.org', :target=>'_blank'
+        - if theme.author
+          li
+            | #{t('theme_by')} #{theme.author_url ? link_to(theme.author, theme.author_url) : "#{theme.author} "}
+          li = link_to t('live_help'), 'http://talk.amahi.org', :target=>'_blank'
+          li = link_to t('forums'), 'https://forums.amahi.org', :target=>'_blank'
+
+        - if current_user
+          li.logout
+            = link_to (t('logout') + " " + current_user.login), logout_path
+        - else
+          li = link_to t('log_in'), login_path

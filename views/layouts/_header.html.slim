@@ -1,0 +1,35 @@
+nav#header.navbar.navbar-default role="navigation"
+  .container
+    .navbar-header
+      button.navbar-toggle data-target="#navbarCollapse" data-toggle="collapse" type="button"
+        span.sr-only Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      a.navbar-brand#logo-amahi href=root_path  AMAHI
+    = render 'layouts/searchform'
+    #navbarCollapse.collapse.navbar-collapse
+      ul.nav.navbar-nav.navbar-right#navigation
+        li class=(request.original_fullpath==root_path ? 'active' : '' )
+          a href=root_path
+            = t('home')
+            i.icon-home
+        - if current_user_is_admin?
+           li
+             a href=users_engine.root_path
+              = t('setup')
+              i.icon-setup
+           li
+             a href='http://help.amahi.org' target='_blank'
+              = t('help')
+              i.icon-help
+           li
+             a href=apps_engine.root_path
+              = t('apps')
+              i.icon-apps
+        - else
+           li
+             a href='http://help.amahi.org' target='_blank'
+               = t('help')
+               i.icon-apps
+
