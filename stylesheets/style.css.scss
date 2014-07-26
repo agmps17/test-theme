@@ -37,9 +37,6 @@ html,body{
 .form_hidden{
   display:none;
 }
-.btn-create{
-  display:block !important;
-}
 
 #logo-amahi{
   background: url(../images/logo_amahi.png) no-repeat;
@@ -123,11 +120,6 @@ a {
   margin: 15px 0 0;
 }
 
-#systems-result {
-  overflow: hidden;
-  text-align: center;
-  padding: 15px 345px 15px 0;
-}
 
 .btn-system {
 	display: inline-block;
@@ -319,6 +311,43 @@ a {
   @include border-radius(5px 5px 0 0);
   @include background-gradient(#fcfcfc, #f7f7f7);
 }
+#subtabs{
+  border: 1px solid #e8e8e8;
+  border-bottom-color: #dfdfdf;
+  padding: 0px !important;
+  @include background-gradient(#fcfcfc, #f7f7f7);
+}
+.subtab_menu {
+    list-style: none;
+    margin: 0 0 0px 0px;
+    background-color: #d3d3d3;
+    @include clearfix;
+  }
+
+.subtab_menu > li {
+  float: left;
+  border-right: 1px solid #e8e8e8;
+  border-bottom: 1px solid #e8e8e8;
+   a {
+      display: block;
+      line-height: 38px;
+      padding: 0 28px;
+      font-size: 12px;
+      color: #2C2E2C;
+      &:hover {
+        text-decoration: none;
+        background: #fff;
+        color: #3f3f3f;
+      }
+    }
+     &.active {
+      > a {
+        background: #fff;
+        color: #3f3f3f;
+      }
+    }
+  }
+
 
 nav.preftab {
   @include border-radius(5px 0 0 0);
@@ -326,7 +355,6 @@ nav.preftab {
   z-index: 100;
   height: auto;
 
-  &.subtab { height: 67px; }
 
   ul {
     list-style: none;
@@ -337,6 +365,7 @@ nav.preftab {
   li {
     float: left;
     border-right: 1px solid #e8e8e8;
+    border-bottom: 1px solid #e8e8e8;
     //position: relative;
 
     &:first-child {
@@ -346,24 +375,18 @@ nav.preftab {
     }
 
     &.active {
-      border-bottom: none;
-
       > a {
         background: #fff;
         color: #3f3f3f;
       }
-
       > ul {
-        display: block;
         margin: 0 0 0px 0px;
         z-index: 100;
       }
     }
-
     &:hover {
       ul { z-index: 200; }
     }
-
     a {
       display: block;
       line-height: 38px;
@@ -371,24 +394,22 @@ nav.preftab {
       font-size: 12px;
       font-weight: bold;
       color: #b3b3b3;
-
       &:hover {
         text-decoration: none;
         background: #fff;
         color: #3f3f3f;
       }
     }
-
       // secondary navigation
       ul {
-        display: block none;
+        display: none;
         margin: 0 0 0px 0px;
         background: #fff;
         border-top: 1px solid #e8e8e8;
         position: absolute;
         left: 0;
         top: 38px;
-        height: 28px;
+        height: 38px;
         width: 100%;
         z-index: 10;
         zoom: 1;
@@ -413,7 +434,9 @@ nav.preftab {
       }
     }
 }
-
+.selected{
+  background-color: #e8e8e8 !important;
+}
 
 // App Content
 // --------------------------------------------------
@@ -460,22 +483,6 @@ nav.preftab {
   }
 }
 
-.apptable {
-  border-collapse: collapse;
-}
-
-thead.apptable td {
-  color: #000;
-  height: 25px;
-  line-height: 25px;
-  padding: 0 0 0 5px;
-  @include background-gradient(#fcfcfc, #f7f7f7);
-}
-
-#calendars-table td {
-  padding: 5px;
-}
-
 table.settings, .settings th {
   border-collapse: collapse;
 }
@@ -484,7 +491,7 @@ table.settings, .settings th {
   vertical-align: top;
 }
 
-.settings th, thead.apptable td {
+.settings th {
   font-size: 16px;
   background: #333;
   color: #fff;
@@ -494,27 +501,10 @@ table.settings, .settings th {
   text-align: left;
   font-weight: bold;
 }
-
-#calendars-table {
-  border: 1px solid #e8e8e8;
-}
-
-thead.apptable td:first-child, .fw-rules-col1 {
-  @include border-radius(5px 0 0 0);
-}
-
-thead.apptable td:last-child, .fw-rules-col3 {
-  @include border-radius(0 5px 0 0);
-}
-
-.settings-col2.fw-rules-col2 {
+.settings-col2{
   -moz-border-radius: 0;
   -webkit-border-radius: 0;
   border-radius: 0;
-}
-
-.fw-rules-col3 {
-  padding: 0 30px 0 0;
 }
 
 .settings-col1 {
@@ -534,9 +524,6 @@ thead.apptable td:last-child, .fw-rules-col3 {
   @include border-radius(0 5px 0 0);
 }
 
-table.apptable, thead.apptable {
-  @include border-radius(5px);
-}
 
 table.settings {
 	tbody td {
@@ -557,11 +544,6 @@ th.centered, td.centered {
   text-align: center;
 }
 
-table.apptable {
-  .odd td:first-child, .even td:first-child {
-    padding: 0 0 0 5px;
-  }
-}
 
 #shares {
   p {
@@ -610,7 +592,7 @@ table.apptable {
 }
 
 .settings-actions {
-  float: right;
+  text-align: center;
   a img {
     margin: -3px 0 0 0;
   }
@@ -781,8 +763,7 @@ td {
 }
 
   .app-content {
-    margin: 0 0 0 340px;
-
+    padding-left: 20px;
     ul { list-style: inside; }
 
     .install {
@@ -2069,8 +2050,6 @@ pre code {
 .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
   position: relative;
   min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
 }
 .col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12 {
   float: left;
@@ -3456,6 +3435,7 @@ fieldset[disabled] .btn-default.active {
 .btn-primary {
   color: #ffffff;
   background-image: -webkit-linear-gradient(top, #666666, #1F1F1B);
+  background-image: -moz-linear-gradient(top, #666666, #1F1F1B);
   border-color: #127ba3;
 }
 .btn-primary:hover,
@@ -3466,11 +3446,15 @@ fieldset[disabled] .btn-default.active {
   color: #ffffff;
   border-color: #0c516c;
   background-image: -webkit-linear-gradient(top, #666666, #1F1F1B);
+  background-image: -moz-linear-gradient(top, #666666, #1F1F1B);
+
 }
 .btn-primary:active,
 .btn-primary.active,
 .open > .dropdown-toggle.btn-primary {
   background-image: -webkit-linear-gradient(top, #666666, #1F1F1B);
+  background-image: -moz-linear-gradient(top, #666666, #1F1F1B);
+
 }
 .btn-primary.disabled,
 .btn-primary[disabled],
@@ -3488,6 +3472,7 @@ fieldset[disabled] .btn-primary:active,
 .btn-primary[disabled].active,
 fieldset[disabled] .btn-primary.active {
   background-image: -webkit-linear-gradient(top, #666666, #1F1F1B);
+  background-image: -moz-linear-gradient(top, #666666, #1F1F1B);
   border-color: #127ba3;
 }
 .btn-primary .badge {
@@ -3539,6 +3524,7 @@ fieldset[disabled] .btn-success.active {
   color: #ffffff;
   background-color: #e8715f;
   background-image: -webkit-linear-gradient(top, #bc0332, #e8715f);
+  background-image: -moz-linear-gradient(top, #bc0332, #e8715f);
   border-color: #000000;
 }
 .btn-info:hover,
@@ -3549,6 +3535,7 @@ fieldset[disabled] .btn-success.active {
   color: #ffffff;
   background-color: #e8715f;
   background-image: -webkit-linear-gradient(top, #bc0332, #e8715f);
+  background-image: -moz-linear-gradient(top, #bc0332, #e8715f);
   border-color: #000000;
 }
 .btn-info:active,
@@ -3573,12 +3560,14 @@ fieldset[disabled] .btn-info:active,
 fieldset[disabled] .btn-info.active {
   background-color: #e8715f;
   background-image: -webkit-linear-gradient(top, #bc0332, #e8715f);
+  background-image: -moz-linear-gradient(top, #bc0332, #e8715f);
   border-color: #000000;
 }
 .btn-info .badge {
   color: #75caeb;
   background-color: #e8715f;
   background-image: -webkit-linear-gradient(top, #bc0332, #e8715f);
+  background-image: -moz-linear-gradient(top, #bc0332, #e8715f);
 }
 .btn-warning {
   color: #ffffff;
@@ -4756,12 +4745,14 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar-default .navbar-nav > li > a:focus {
   color: #ffffff;
   background-image: -webkit-linear-gradient(top, #030303, #4B4545);
+  background-image: -moz-linear-gradient(top, #030303, #4B4545);
 }
 .navbar-default .navbar-nav > .active > a,
 .navbar-default .navbar-nav > .active > a:hover,
 .navbar-default .navbar-nav > .active > a:focus {
   color: #ffffff;
   background-image: -webkit-linear-gradient(top, #030303, #4B4545);
+  background-image: -moz-linear-gradient(top, #030303, #4B4545);
 }
 .navbar-default .navbar-nav > .disabled > a,
 .navbar-default .navbar-nav > .disabled > a:hover,
@@ -7200,21 +7191,6 @@ label {
 
 
 
-.app-store-header {
-    padding: 15px 0 70px 0px;
-
-  a {
-    background: url(../images/sprites/apps_btns_sprite.png) no-repeat;
-    display: block;
-    text-indent: -9999px;
-    height: 48px;
-    width: 172px;
-    cursor: pointer;
-
-    &#btn-get-apps { background-position: 0 0; margin: 0 10px 0 0; float:right;}
-    &#btn-install-apps { background-position: -182px 0; float:left;}
-  }
-}
  .img-wrap {
     background: #fff;
     padding: 2px;
@@ -7392,7 +7368,6 @@ table.apptable {
     td:first-child {
       width: 10%;
       text-align: right;
-      padding-right: 25px;
       border-right: 1px solid #DFDFDF;
     }
   }

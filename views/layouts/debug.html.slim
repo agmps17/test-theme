@@ -40,28 +40,23 @@ html[dir="#{@locale_direction}" lang="#{I18n.locale}" xml:lang="#{I18n.locale}"]
     #content
       = render 'layouts/subheader'
       = render 'shared/flash_messages'
-      #app.inner
-        #tabs.sidebar-nav.col-sm-3
-          nav.navbar.navbar-default role="navigation"
-            .navbar-header
-              button.navbar-toggle data-target=".navbar-sidemenu-collapse" data-toggle="collapse" type="button"
-                span.sr-only Toggle navigation
-                span.icon-bar
-                span.icon-bar
-                span.icon-bar
-            .collapse.navbar-collapse.navbar-sidemenu-collapse
-            ul.nav.navbar-nav
+      #app.inner.container
+        #tabs.col-sm-10
+          nav.preftab[class=nav_class(@tabs)]
+            ul
               li.active
-                a href='/tab/debug'
+                a.menu.selected href='/tab/debug'
                   = t 'debug'
-                ul.navbar-nav.nav.sub-nav
-                  li[class="#{request.fullpath == '/tab/debug' ? 'active' : ''}"]
-                    = link_to "App Logs", '/tab/debug'
-                  li[class="#{request.fullpath == '/tab/debug/logs' ? 'active' : ''}"]
-                    = link_to "Logs", '/tab/debug/logs'
-                  li[class="#{request.fullpath == '/tab/debug/system' ? 'active' : ''}"]
-                    = link_to "System Info", '/tab/debug/system'
-        #preferences
+        #subtabs.col-sm-10
+          nav
+            ul.subtab_menu
+              li[class="#{request.fullpath == '/tab/debug' ? 'active' : ''}"]
+                = link_to "App Logs", '/tab/debug'
+              li[class="#{request.fullpath == '/tab/debug/logs' ? 'active' : ''}"]
+                = link_to "Logs", '/tab/debug/logs'
+              li[class="#{request.fullpath == '/tab/debug/system' ? 'active' : ''}"]
+                = link_to "System Info", '/tab/debug/system'
+        #preferences.col-sm-10
           .preftab
             = yield
 
